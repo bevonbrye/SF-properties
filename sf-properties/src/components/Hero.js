@@ -1,5 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
+import { Button } from './Button';
+import { IoMdArrowRoundFoward } from 'react-icons/io'
+import {IoMdArrowFoward, IoArrow}
 
 
 const HeroSec = styled.section`
@@ -20,13 +23,33 @@ const HeroWrap = styled.div`
   position: relative;
 `;
 
+const HeroSlide = styled.div``
+const HeroSlider = styled.div``
+const HeroImage = styled.img``
+const Arrow = styled.div``
 
 
-const Hero = () => {
+const Hero = ({ slideData } ) => {
     return (
         <HeroSec>
             <HeroWrap>
-                <h1>hey</h1>
+                {slideData.map((item, index) => { 
+                    return ( 
+                        <HeroSlide key={index}>
+                            <HeroSlider>
+                                <HeroImage/>
+                                <HeroContent>
+                                    <h1> {item.title} </h1>
+                                    <p>{item.price}</p>
+                                    <Button path={item.path} primary='true'>
+                                        {item.label}
+                                        <Arrow/>
+                                    </Button>
+                                </HeroContent>
+                            </HeroSlider>
+                        </HeroSlide>
+                    )
+                })}
             </HeroWrap>
         </HeroSec>
     )
