@@ -12,9 +12,15 @@ export const Button = styled(Link)`
     min-width: 100px;
     text-decoration: none;
     transition: 0.3s;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: ${({ big } ) => (big ? '16px 40px' : '14px 24px')};
-    color:${({ primary }) => (primary ? 'whate' : '#000d1a')}
+    color:${({ primary }) => (primary ? 'white' : '#000d1a')};
+    font-size: ${({ huge }) => (huge ? '20px' : '12px')};
+    &:hover {
+        transform: translateY(-2px);
+    };
+    ${'' /* font-size: ${({  }) => ( ? '' : '')} */}
+
 `
