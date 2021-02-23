@@ -53,7 +53,7 @@ export const SlideData = [
 // ---------- Add API: 
 
 /*
-fetch("https://realtor.p.rapidapi.com/properties/detail?listing_id=608763437&prop_status=for_sale&property_id=4599450556", {
+fetch("https://realtor.p.rapidapi.com/properties/v2/detail?property_id=O3599084026", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-key": "b5988b254amsh70fdfa368381a5cp1409efjsn8ae9087f1925",

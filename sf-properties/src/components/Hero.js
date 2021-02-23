@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Button } from './Button';
 import { IoMdArrowRoundFoward } from 'react-icons/io'
-import {IoMdArrowFoward, IoArrow}
+import {IoArrowForward, IoArrowBack} from 'react-icons/io5'
 
+// Styled components ***********
 
 const HeroSec = styled.section`
     height: 100vh;
@@ -23,21 +24,154 @@ const HeroWrap = styled.div`
   position: relative;
 `;
 
-const HeroSlide = styled.div``
-const HeroSlider = styled.div``
-const HeroImage = styled.img``
-const Arrow = styled.div``
+const HeroSlide = styled.div`
+    z-index: 1; 
+    width: 100%; 
+    height: 100%
+`
+const HeroSlider = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const HeroImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    bottom: 0vh;
+    left: 0;
+    overflow: hidden;
+    opacity: 0.4;
+    ${'' /* background overlay */}
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+  `
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  max-width: 1600px;
+  width: calc(100% - 100px);
+  color: #fff;
+  h1 {
+      ${'' /* creates an upper and lower bound */}
+    font-size: clamp(1rem, 8vw, 4rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    text-align: left;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  }
+  `
+const Arrow = styled.div`
+    margin: 0.15rem;
+`
+
+const arrowButtons = css`
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  cursor: pointer;
+  background: #000d1a;
+  border-radius: 50px;
+  padding: 10px;
+  margin-right: 1rem;
+  user-select: none;
+  transition: 0.3s;
+  &:hover { 
+      background: #cd853f; 
+      transfrom: scale(1.05);
+  }
+`
+
+const PrevArrow = styled(IoArrowBack)`
+  ${arrowButtons}
+`;
+
+const NextArrow = styled(IoArrowForward)`
+  ${arrowButtons}
+`;
+const SliderButton = styled.div`
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  z-index: 10;
+`;
+
 
 
 const Hero = ({ slideData } ) => {
+
+    const [current, setCurrent] = useState(0); 
+    const len = slideData.length;
+    const timeout = useRef(null); 
+
+
+    // alterantes between slide data: 
+    useEffect(() => {
+      const nextSlide = () => { 
+      setCurrent(current === len - 1 ? 0 : current + 1 )
+      }
+      timeout.current = setTimeout(nextSlide, 5000)
+      return () => {
+        if(timeout.current) {
+          clearTimeout(timeout.current)
+        }
+      };
+    }, [current, len]);
+
+    const nextSlide = () => { 
+      setCurrent(current === len - 1 ? 0 : current + 1 )
+      console.log(current)
+    }
+
+    
+    
+    const prevSlide = () => { 
+      setCurrent(current === len - 1 ? 0 : current - 1 )
+      console.log(current)
+    }
+
+    if(!Array.isArray(slideData) || slideData.length <=0) { 
+      return null
+    }
     return (
         <HeroSec>
             <HeroWrap>
                 {slideData.map((item, index) => { 
                     return ( 
                         <HeroSlide key={index}>
-                            <HeroSlider>
-                                <HeroImage/>
+                        {index === current && (
+                          <HeroSlider>
+                                <HeroImage src={item.image}/>
                                 <HeroContent>
                                     <h1> {item.title} </h1>
                                     <p>{item.price}</p>
@@ -47,12 +181,19 @@ const Hero = ({ slideData } ) => {
                                     </Button>
                                 </HeroContent>
                             </HeroSlider>
+                        )}
+                       
                         </HeroSlide>
                     )
                 })}
+                <SliderButton>
+                    <PrevArrow onClick={prevSlide}/>
+
+                    <NextArrow onClick={nextSlide}/>
+                </SliderButton>
             </HeroWrap>
         </HeroSec>
     )
 }
 
-export default Hero
+export default Hero;

@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components/macro';
 import  {Link} from 'react-router-dom';
 import { menuData } from '../data/MenuData'
 import  { Button } from './Button';
-import { CgAbstract } from 'react-icons/cg'
+import { CgMenuMotion } from 'react-icons/cg'
 
 
 //----------Style One: 
@@ -15,7 +15,7 @@ const Nav = styled.nav`
     z-index: 100;
     position: fixed;
     width: 100%;
-    background:black;
+    ${'' /* background:black; */}
 ;
 `
 //----------Style Two: 
@@ -33,7 +33,7 @@ const NavLink = css`
 
 //----------Style Three:
 
-const MenuBars = styled(CgAbstract)`
+const MenuBars = styled(CgMenuMotion)`
     display:none;
 
     @media screen and (max-width: 768px ) { 
@@ -89,11 +89,11 @@ const NavBtn = styled.div`
     } 
 `
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
     return (
         <Nav>
         <Logo to={'/'}> SF Properties </Logo>
-        <MenuBars/>
+        <MenuBars onClick={toggle}/>
         {/* alternate way to display items on within data with Items being the the actual data and index being teh key */}
         <NavMenu>
             {menuData.map((item, index) => (
