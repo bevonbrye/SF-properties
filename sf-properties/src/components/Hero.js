@@ -140,7 +140,7 @@ const Hero = ({ slideData } ) => {
       const nextSlide = () => { 
       setCurrent(current === len - 1 ? 0 : current + 1 )
       }
-      timeout.current = setTimeout(nextSlide, 5000)
+      timeout.current = setTimeout(nextSlide, 10000)
       return () => {
         if(timeout.current) {
           clearTimeout(timeout.current)
