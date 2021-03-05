@@ -2,4 +2,9 @@
 - This web application exemplifies the unique properties that SF has to offer. 
 - Heavily focused on react and styled components 
 ## Landing page: 
-![Drag Racing](Dragster.jpg)
+![SF house](https://imgur.com/JXYmsyF.png)
+![SF house](https://imgur.com/KsJb3Ud.png)
+![SF house](https://imgur.com/lvOkprc.png)
+
+## Tech: 
+React.js | Node.js | Styled Components
