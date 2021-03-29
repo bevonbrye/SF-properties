@@ -1,5 +1,5 @@
 import ImageOne from '../assets/bed.jpg';
-import ImageTwo from '../assets/LR.jpg';
+import ImageTwo from '../assets/inter1.jpeg';
 
 export const InfoData = { 
     heading: 'Explore Beautiful Homes',

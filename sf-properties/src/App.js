@@ -5,6 +5,7 @@ import GlobalStyle from './gs';
 import { SlideData } from './data/SlideData'
 import Dropdown from './components/MobileMenu';
 import Content from './components/Content';
+import { InfoData } from './components/InfoData';
 
 
 
@@ -22,7 +23,7 @@ function App() {
       <Navbar toggle={toggle}/>
       <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Hero slideData={SlideData}/>
-      <Content/>
+      <Content {...InfoData}/>
     </>
   );
 }
