@@ -1,8 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Button } from './Button';
-import { IoMdArrowRoundFoward } from 'react-icons/io'
-import {IoArrowForward, IoArrowBack} from 'react-icons/io5'
+import {IoArrowForward, IoArrowBack} from 'react-icons/io5';
 
 // Styled components ***********
 
@@ -140,7 +139,7 @@ const Hero = ({ slideData } ) => {
       const nextSlide = () => { 
       setCurrent(current === len - 1 ? 0 : current + 1 )
       }
-      timeout.current = setTimeout(nextSlide, 10000)
+      timeout.current = setTimeout(nextSlide, 100000)
       return () => {
         if(timeout.current) {
           clearTimeout(timeout.current)
