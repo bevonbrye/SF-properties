@@ -1,9 +1,10 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components/macro';
-import  {Link} from 'react-router-dom';
-import { menuData } from '../data/MenuData'
+import  { Link, useLocation } from 'react-router-dom';
+import { menuData } from '../data/MenuData';
 import  { Button } from './Button';
-import { CgMenuMotion } from 'react-icons/cg'
+import { CgMenuMotion } from 'react-icons/cg'; 
+
 
 
 //----------Style One: 
@@ -15,8 +16,7 @@ const Nav = styled.nav`
     z-index: 100;
     position: fixed;
     width: 100%;
-    ${'' /* background:black; */}
-;
+    ${'' /* background:black; */};
 `
 //----------Style Two: 
 
@@ -90,8 +90,37 @@ const NavBtn = styled.div`
 `
 
 const Navbar = ({ toggle }) => {
+
+    const [ navBar, setNavbar ] = useState(false); 
+    const location =  useLocation()
+
+    const changeBackground = () => { 
+        // height of navbar 
+        if(window.pageYOffset >= 60) { 
+            setNavbar(true)
+        } else { 
+            setNavbar(false)
+        }
+    }; 
+
+    useEffect(() => { 
+        const watchScroll = () => { 
+            window.addEventListener('scroll', changeBackground)
+        }
+
+        watchScroll(); 
+
+        return () => window.removeEventListener('scroll', changeBackground)
+    },[]); 
+
+    let style = { 
+        backgroundColor: navBar || location.pathname !== '/' ? 'black' : 'transparent', transition: '0.8s' 
+    }
+
+
+
     return (
-        <Nav>
+        <Nav style={style}>
         <Logo to={'/'}> SF Properties </Logo>
         <MenuBars onClick={toggle}/>
         {/* alternate way to display items on within data with Items being the the actual data and index being teh key */}
