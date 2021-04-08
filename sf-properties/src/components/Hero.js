@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Button } from './Button';
 import {IoArrowForward, IoArrowBack} from 'react-icons/io5';
+import { motion }
 
 // Styled components ***********
 
