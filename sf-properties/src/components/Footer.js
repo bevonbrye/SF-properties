@@ -1,12 +1,15 @@
 import React from 'react'; 
 import {  IoMdArrowRoundForward } from 'react-icons/io';
-import  styled from 'styled-components/macro'; 
+import  styled, { css } from 'styled-components/macro'; 
 import  { Link } from 'react-router-dom'; 
 import { Button } from './Button';
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 
 
 
+
+
+ 
 const Section = styled.section`
     background-color: #000d1a;
     color: #fff; 
@@ -57,19 +60,56 @@ const FooterInfo = styled.div`
 
     @media screen and (max-width: 768px) {
     padding: 1rem 0rem;
-        }
+     }
 `;
 
 
-const FooterBottom = styled.div``;
+const FooterBottom = styled.div`
+    display: flex;
+    padding: 2rem 0rem;
+    
+    @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
 
 
-const SocialIcons = styled.div``; 
+const SocialIcons = styled.div`
+    display: flex; 
+    width: 50%;
+
+    @media screen and (max-width: 768px) {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+`; 
+
+const Icons = css`
+  font-size: clamp(1rem, 4vw, 2rem);
+  margin-right: 1.5rem;
+  color: #cd853f;
+`;
+
+const YouTube = styled(FaYoutube)`
+    ${Icons}
+`; 
 
 
-const YouTube = styled(FaYoutube)``; 
-const Contact = styled.div``; 
-const IG = styled(FaInstagram)``; 
+const IG = styled(FaInstagram)`
+    ${Icons}
+`; 
+
+const Contact = styled.div`
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+
+    @media screen and (max-width: 768px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
+`; 
 
 
 
@@ -92,23 +132,23 @@ const Footer = () => {
                     </FooterInfo>
                     
                     <FooterInfo>
-                        <h4> Contact Us</h4>
+                        <h4> Location </h4>
                         <Link to='/homes'> Office </Link>
                         <Link to='/homes'> Number </Link>
                     </FooterInfo>
                 </FooterTop>
                 <FooterBottom> 
                     <SocialIcons>
-                        <a href='//facebook.com' rel='noopener norefferer' target='_blank'>
+                        <a href='//youtube.com' rel='noopener norefferer' target='_blank'>
                             <YouTube/>
                         </a>
-                        <a href='//facebook.com' rel='noopener norefferer' target='_blank'>
+                        <a href='//instagram.com' rel='noopener norefferer' target='_blank'>
                             <IG/>
                         </a>
                     </SocialIcons>
                     <Contact>
                         <Button to='homes'>
-                            Let's Chat <IoMdArrowRoundForward/>
+                            Let's Chat   <IoMdArrowRoundForward/>
                         </Button>
                     </Contact>
                 </FooterBottom>

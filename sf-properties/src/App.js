@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
-import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import GlobalStyle from './gs';
-import { SlideData } from './data/SlideData'
 import Dropdown from './components/MobileMenu';
-import Content from './components/Content';
-import { InfoData, InfoDataTwo} from './components/InfoData';
-import Listings from './components/Listings';
-import Features from './components/Features';
 import Footer from './components/Footer';
+import { Switch, Route} from 'react-router-dom'
+import Home from './pages';
 
 
 
@@ -25,11 +21,12 @@ function App() {
       <GlobalStyle/>
       <Navbar toggle={toggle}/>
       <Dropdown isOpen={isOpen} toggle={toggle}/>
-      <Hero slideData={SlideData}/>
-      <Content {...InfoData}/>
-      <Listings/>
-      <Features/>
-      <Content {...InfoDataTwo}/>
+      <Switch>
+        <Route path='/' exact component={Home} />
+        {/* <Route path='/' exact component={} />
+        <Route path='/' exact component={} />
+        <Route path='/' exact component={} /> */}
+      </Switch>
       <Footer/>
 
     </>
